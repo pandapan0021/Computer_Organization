@@ -5,10 +5,13 @@
 
 G* mk_and(W* input1, W* input2, W* output){
 	G* g = (G*)malloc(sizeof(struct gate));
-	if(g<0){
+	if(!g){
+		perror("create and gate failed!");
 		exit(-1);
 	}
 	if(!(input1 && input2 && output)){
+		perror("all wires is null when \
+				create and gate!");
 		exit(-1);
 	}
 	g->gate_type = AND_GATE;
@@ -23,11 +26,13 @@ G* mk_and(W* input1, W* input2, W* output){
 
 G* mk_or(W* input1, W* input2, W* output){
 	G* g = (G*)malloc(sizeof(struct gate));
-	if(g<0){
-		perror("failed");
+	if(!g){
+		perror("create or gate failed!");
 		exit(-1);
 	}
 	if(!(input1 && input2 && output)){
+		perror("all wires is null when \
+				create or gate!");
 		exit(-1);
 	}
 	g->gate_type = OR_GATE;
@@ -42,11 +47,13 @@ G* mk_or(W* input1, W* input2, W* output){
 
 G* mk_invert(W* input, W* output){
 	G* g = (G*)malloc(sizeof(G));
-	if(g<0){
-		perror("faild");
+	if(!g){
+		perror("create invert gate failed!");
 		exit(-1);
 	}
 	if(!(input && output)){
+		perror("all wires is null when \
+				create invert gate!");
 		exit(-1);
 	}
 	g->gate_type = INVERT_GATE;
@@ -60,11 +67,13 @@ G* mk_invert(W* input, W* output){
 
 G* mk_xor(W* input1, W* input2, W* output){
 	G* g = (G*)malloc(sizeof(G));
-	if(g<0){
-		perror("fail");
+	if(!g){
+		perror("create xor gate failed!");
 		exit(-1);
 	}
 	if(!(input1 && input2 && output)){
+		perror("all wires is null when \
+				create xor gate!");
 		exit(-1);
 	}
 	g->gate_type = XOR_GATE;
@@ -80,10 +89,12 @@ G* mk_xor(W* input1, W* input2, W* output){
 G* mk_nor(W* input1, W* input2, W* output){
 	G* g = (G*)malloc(sizeof(G));
 	if(!g){
-		perror("fail");
+		perror("create nor gate failed!");
 		exit(-1);
 	}
 	if(!(input1 && input2 && output)){
+		perror("all wires is null when \
+				create nor gate!");
 		exit(-1);
 	}
 	g->gate_type = NOR_GATE;

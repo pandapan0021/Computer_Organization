@@ -1,7 +1,11 @@
 #ifndef __ADDER_H__
 #define __ADDER_H__
 
-#include "core.h"
+#include "wire.h"
+#include "gate.h"
+#include "task.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /***************************************************************
  * REFACTOR FUNDATION FUNCTION

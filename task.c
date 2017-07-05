@@ -8,12 +8,12 @@
 TASK_q* task_queue_init(){
 	TASK_q* queue = (TASK_q*)malloc(sizeof(TASK_q));
 	if(queue<0){
-		perror("failed");
+		perror("task queue initial failed");
 		exit(-1);
 	}
 	TASK_t* node = (TASK_t*)malloc(sizeof(TASK_t));
 	if(node<0){
-		perror("failed");
+		perror("task queue initial failed");
 		exit(-1);
 	}
 	node->w = NULL;
@@ -52,7 +52,7 @@ TASK_t* task_queue_pop(TASK_q* q){
 TASK_t* mk_task(int task_type, W* w, G* g, int arg){
 	TASK_t* task = (TASK_t*)malloc(sizeof(TASK_t));
 	if(task<0){
-	       perror("faild");
+	       perror("make new task failed");
 	       exit(-1);
 	}
 	if(task_type == __TEST__){

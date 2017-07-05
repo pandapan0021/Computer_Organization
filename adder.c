@@ -8,6 +8,10 @@ H_ADDER_t* new_half_adder(W* input1, W* input2, \
 		          W* sum, W* carry){
 	H_ADDER_t* half_adder = (H_ADDER_t*)\
 				malloc(sizeof(H_ADDER_t));
+	if(!half_adder){
+		perror("create half adder failed!");
+		exit(-1);
+	}
 	half_adder->A_in = input1;
 	half_adder->B_in = input2;
 	half_adder->Sum = sum;
@@ -23,7 +27,7 @@ F_ADDER_t* new_full_adder(W* input1, W* input2, W* sum, \
 	F_ADDER_t* full_adder = (F_ADDER_t*)\
 				malloc(sizeof(F_ADDER_t));
 	if(!full_adder){
-		perror("Create full adder faild!");
+		perror("Create full adder failed!");
 		exit(-1);
 	}
 	W* w_1 = mk_wire();
@@ -53,6 +57,10 @@ BUF_t* new_buffer(int size){
 	BUF_t* buffer = (BUF_t*)malloc(sizeof(BUF_t));
 	buffer->size = size;
 	W** _buffer = (W**)malloc(size*sizeof(W*));
+	if(!(buffer && _buffer)){
+		perror("create buffer failed!");
+		exit(-1);
+	}
 	for(i=0; i<size; i++){
 		_buffer[i] = mk_wire();
 	}
@@ -149,7 +157,7 @@ ADDER_t* new_adder(BUF_t* A, BUF_t* B, BUF_t* S, \
 	BUF_t* one_complement_buffer = new_buffer(size);
 	W** carry_trans = (W**)malloc((size-1)*sizeof(W*));
 	if(!carry_trans){
-		perror("faild when create carry_trans \
+		perror("failed when create carry_trans \
 				for new adder!");
 		exit(-1);
 	}
@@ -159,7 +167,7 @@ ADDER_t* new_adder(BUF_t* A, BUF_t* B, BUF_t* S, \
 
 	ADDER_t* adder = (ADDER_t*)malloc(sizeof(ADDER_t));
 	if(!adder){
-		perror("create new adder faild!");
+		perror("create new adder failed!");
 		exit(-1);
 	}
 	adder -> size = size;
@@ -175,7 +183,7 @@ ADDER_t* new_adder(BUF_t* A, BUF_t* B, BUF_t* S, \
 	F_ADDER_t** _full_adders = (F_ADDER_t**)\
 			    malloc(size*sizeof(F_ADDER_t*));
 	if(!_full_adders){
-		perror("faild when create full adders \
+		perror("failed when create full adders \
 				for new adder!");
 		exit(-1);
 	}
@@ -199,13 +207,6 @@ ADDER_t* new_adder(BUF_t* A, BUF_t* B, BUF_t* S, \
 	return adder;
 }
 
-int complement(W** in, W** out, W* carry, int size){
-	int i;
-	for(i=0; i<size; i++){
-		mk_xor(in[i], carry, out[i]);
-	}
-}
-
 COMPLEMENT_t* new_complement( BUF_t* in, BUF_t* out, \
 		W* _switch, int size){
 	int i;
@@ -215,14 +216,14 @@ COMPLEMENT_t* new_complement( BUF_t* in, BUF_t* out, \
 
 	G** gates = (G**)malloc(size*sizeof(G*));
 	if(!gates){
-		perror("faild create for complement!");
+		perror("failed create for complement!");
 		exit(-1);
 	}
 
 	COMPLEMENT_t* _complement = (COMPLEMENT_t*)\
 				     malloc(sizeof(COMPLEMENT_t));
 	if(!complement){
-		perror("create complement faild!");
+		perror("create complement failed!");
 		exit(-1);
 	}
 	_complement->size = size;

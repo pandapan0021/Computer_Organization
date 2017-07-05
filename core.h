@@ -6,6 +6,7 @@
 #include "gate.h"
 #include "adder.h"
 #include "flip_flop.h"
+#include "store.h"
 #include<stdlib.h>
 #include<stdio.h>
 
